@@ -13,15 +13,23 @@ export default function App() {
     buscarUsuario();
   }, []);
 
+  const verificarCompleted = (completed) =>{
+    if (completed == true){
+      return "Completo."
+    } else {
+      return "Incompleto."
+    }
+  };
+
   return (
     <>
       <h1>Usuário</h1>
       <ul>
       {Usuarios.map(usuario => (
-          <li key={usuario.userId}>
+          <li key={usuario.id}>
             <p>Id: {usuario.id}</p>
             <p>title: {usuario.title}</p>
-            <p>completed: {usuario.completed}</p>
+            <p>completed: {verificarCompleted(usuario.completed)}</p>
             <br></br>
           </li>
         ))}

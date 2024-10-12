@@ -5,11 +5,10 @@ export default function App() {
   const [dadosUsuario,setDadosUsuario] = useState([]);
 
   useEffect(() => { 
-
     const buscardados = async () => {
         const resposta = await fetch('https://randomuser.me/api');
         const dados = await resposta.json();
-        setDadosUsuario(dados);
+        setDadosUsuario(dados.results);
     }
     buscardados();
   }, []);
@@ -18,11 +17,12 @@ export default function App() {
     <>
       <h1>Usuário</h1>
       <ul>
-      {dadosUsuario.map(dados => (
-          <li key={dados.id}>
-            <h2>{dados.title}</h2>
-            <p>{dados.description}</p>
-          </li>
+      {dadosUsuario.map((dados, index) => (
+          <li key={index}>
+          <h2>Nome: {dados.name.title} {dados.name.first} {dados.name.last}</h2>
+          <p>Email: {dados.email}</p>
+          <p>País: {dados.location.country}</p>
+        </li>
         ))}
       </ul>
     </>
